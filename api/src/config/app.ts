@@ -19,7 +19,6 @@ class App {
     this.express.use(express.json())
     this.express.use(cors())
     this.express.use(express.static('upload'))
-    dotenv.config()
   }
 
   private database() {}

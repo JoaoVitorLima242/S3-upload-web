@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import multer from 'multer'
 
-import { uploadFile } from '../integrations/S3'
+import S3 from '../integrations/S3'
 
 const upload = multer({ dest: './uploads/' })
 const routes = Router()
@@ -12,8 +12,9 @@ routes.post('/', upload.single('image'), async (req, res) => {
 
   const description = req.body.description
 
-  const result = await uploadFile(file)
-  console.log(result)
+  await S3.uploadFile(file)
+    .then(res => console.log(res))
+    .catch(res => console.log(res))
 
   res.status(200).json({ message: 'Image!' })
 })
