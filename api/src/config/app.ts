@@ -2,7 +2,8 @@ import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 
-import IndexRoute from '../routes/index.routes'
+import IndexRoutes from '../routes/index.routes'
+import ImageRoutes from '../routes/image.routes'
 
 class App {
   public express: express.Application
@@ -24,7 +25,8 @@ class App {
   private database() {}
 
   private routes() {
-    this.express.use('/', IndexRoute)
+    this.express.use('/api/image', ImageRoutes)
+    this.express.use('/api', IndexRoutes)
   }
 }
 
