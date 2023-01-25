@@ -18,15 +18,11 @@ class S3Integration {
   public uploadFile(file: Express.Multer.File) {
     const fileStream = fs.createReadStream(file.path)
 
-    console.log(config, 'config')
-
     const uploadParams: PutObjectRequest = {
       Bucket: config.bucket_name,
       Body: fileStream,
       Key: file.filename,
     }
-
-    console.log(this.s3)
 
     return this.s3.upload(uploadParams).promise()
   }

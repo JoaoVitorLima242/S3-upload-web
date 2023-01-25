@@ -11,7 +11,7 @@ export const config: {
 } = {
   port: Number(process.env.PORT) ?? 8080,
   aws_access_key_id: String(process.env.AWS_ACCESS_KEY),
-  aws_secret_access_key: String(process.env.AWS_ACCESS_KEY),
+  aws_secret_access_key: String(process.env.AWS_SECRET_KEY),
   bucket_name: String(process.env.AWS_BUCKET_NAME),
   bucket_region: String(process.env.AWS_BUCKET_REGION),
 }

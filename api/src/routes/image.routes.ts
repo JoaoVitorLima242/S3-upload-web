@@ -7,16 +7,18 @@ const upload = multer({ dest: './uploads/' })
 const routes = Router()
 
 routes.post('/', upload.single('image'), async (req, res) => {
-  const file = req.file
-  if (!file) throw 'Error'
+  try {
+    const file = req.file
+    if (!file) throw 'Error'
 
-  const description = req.body.description
+    const description = req.body.description
 
-  await S3.uploadFile(file)
-    .then(res => console.log(res))
-    .catch(res => console.log(res))
-
-  res.status(200).json({ message: 'Image!' })
+    const result = await S3.uploadFile(file)
+    console.log(result)
+    res.status(200).json({ message: 'Image!' })
+  } catch (error) {
+    console.log(error, 'error')
+  }
 })
 
 export default routes
