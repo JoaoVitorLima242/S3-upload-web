@@ -9,7 +9,8 @@ async function postImage({image, description}) {
   formData.append("description", description)
 
   const result = await axios.post('http://localhost:3001/api/image', formData, { headers: {'Content-Type': 'multipart/form-data'}})
-  return result.data
+  console.log(result)
+  return result.data.imagePath
 }
 
 
@@ -22,7 +23,7 @@ function App() {
   const submit = async event => {
     event.preventDefault()
     const result = await postImage({image: file, description})
-    setImages([result.image, ...images])
+    setImages(prevState => [result, ...prevState])
   }
 
   const fileSelected = event => {
@@ -43,8 +44,6 @@ function App() {
           <img src={image}></img>
         </div>
       ))}
-
-      <img src={'http://localhost:3001/api/image/17c1b2cb397feb3f5d6186923a06f689'}></img>
 
     </div>
   );

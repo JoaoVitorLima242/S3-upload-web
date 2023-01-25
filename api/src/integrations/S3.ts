@@ -21,7 +21,7 @@ class S3Integration {
     const uploadParams: PutObjectRequest = {
       Bucket: config.bucket_name,
       Body: fileStream,
-      Key: file.filename,
+      Key: `images/${file.filename}`,
     }
 
     return this.s3.upload(uploadParams).promise()

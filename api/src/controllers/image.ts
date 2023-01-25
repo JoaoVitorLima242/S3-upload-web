@@ -9,10 +9,9 @@ class ImageControllers {
       if (!file) throw 'Error'
 
       const description = req.body.description
-
       const result = await S3.uploadFile(file)
 
-      res.send({ imagePath: `/images/${result.Key}` })
+      res.send({ imagePath: result.Location })
     } catch (error) {
       console.log(error, 'error')
     }
