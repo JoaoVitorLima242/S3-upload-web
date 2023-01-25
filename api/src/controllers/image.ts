@@ -11,8 +11,6 @@ class ImageControllers {
       const description = req.body.description
 
       const result = await S3.uploadFile(file)
-      console.log(result)
-      res.status(200).json({ message: 'Image!' })
 
       res.send({ imagePath: `/images/${result.Key}` })
     } catch (error) {

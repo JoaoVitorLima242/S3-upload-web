@@ -44,6 +44,7 @@ function App() {
         </div>
       ))}
 
+      <img src={'http://localhost:3001/api/image/17c1b2cb397feb3f5d6186923a06f689'}></img>
 
     </div>
   );
